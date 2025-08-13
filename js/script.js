@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 */
     function getWeather(city) {
-         // Use the full URL to your InfinityFree API
-    const apiUrl = `https://weather-scraper.freesite.online/api/weather.php?city=${city}`;
+
+        // Use a CORS proxy to bypass server restrictions
+    const originalApiUrl = `https://weather-scraper.freesite.online/api/weather.php?city=${city}`;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = proxyUrl + originalApiUrl;
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
