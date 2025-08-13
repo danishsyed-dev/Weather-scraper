@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const city = cityInput.value;
         getWeather(city);
     });
-
+/*
     cityInput.addEventListener('input', function() {
         fetchSearchList(this.value);
     });
-
+*/
     function getWeather(city) {
          // Use the full URL to your InfinityFree API
     const apiUrl = `https://weather-scraper.freesite.online/api/weather.php?city=${city}`;
