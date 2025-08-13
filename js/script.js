@@ -15,24 +15,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 */
     function getWeather(city) {
+        const apiKey = 'eb36c7ecb36249e7f47bda47a51defa2'; // Your OpenWeatherMap API key
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-        // Use a CORS proxy to bypass server restrictions
-    const originalApiUrl = `https://weather-scraper.freesite.online/api/weather.php?city=${city}`;
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = proxyUrl + originalApiUrl;
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 weatherInfo.innerHTML = '';
-                if (data.error) {
-                    weatherInfo.innerHTML = `<div class='alert alert-danger'>${data.error}</div>`;
+                if (data.cod && data.cod !== 200) {
+                    weatherInfo.innerHTML = `<div class='alert alert-danger'>${data.message || 'City not found.'}</div>`;
                 } else {
                     const main = data.main;
                     const weather = data.weather[0];
                     const temperatureCelsius = main.temp;
                     const weatherHtml = `
                         <h2>Weather in ${data.name}</h2>
-                        <p><strong>Temperature:</strong> ${Math.round(temperatureCelsius, 2)} °C</p>
+                        <p><strong>Temperature:</strong> ${Math.round(temperatureCelsius)} °C</p>
                         <p><strong>Pressure:</strong> ${main.pressure} hPa</p>
                         <p><strong>Humidity:</strong> ${main.humidity}%</p>
                         <p><strong>Description:</strong> ${weather.description}</p>
