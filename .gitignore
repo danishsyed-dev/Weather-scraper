@@ -3,7 +3,7 @@ api/
 
 # Configuration files with secrets
 config.php
-js/config.js
+# js/config.js  # Uncomment after initial push to GitHub Pages
 *.env
 .env*
 
