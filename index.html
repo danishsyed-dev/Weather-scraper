@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,8 +19,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbar */
         }
+
         .weather-container {
             max-width: 600px;
             margin: auto;
@@ -27,17 +30,22 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* Ensure the suggestions are positioned correctly */
+            position: relative;
+            /* Ensure the suggestions are positioned correctly */
         }
+
         .form-group label {
             font-weight: bold;
         }
+
         .weather-info {
             margin-top: 20px;
         }
+
         .weather-info h2 {
             margin-bottom: 20px;
         }
+
         .search-list {
             border: 1px solid #ccc;
             background: #fff;
@@ -48,19 +56,24 @@
             z-index: 1000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
-            top: calc(100% + 5px); /* Position below the input field with some gap */
+            top: calc(100% + 5px);
+            /* Position below the input field with some gap */
             left: 0;
-            display: none; /* Initially hidden */
+            display: none;
+            /* Initially hidden */
         }
+
         .search-item {
             padding: 10px;
             cursor: pointer;
             font-size: 16px;
             color: #333;
         }
+
         .search-item:hover {
             background: #f0f0f0;
         }
+
         .footer {
             text-align: center;
             padding: 10px;
@@ -71,25 +84,30 @@
             width: 100%;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .footer p {
             margin: 0;
             font-size: 14px;
             color: #666;
         }
+
         .footer p span {
             font-weight: bold;
             color: #333;
         }
+
         .footer a {
             color: #333;
             text-decoration: none;
             font-weight: bold;
         }
+
         .footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="weather-container">
@@ -97,7 +115,8 @@
             <form id="weatherForm">
                 <div class="form-group">
                     <label for="city">Enter city name:</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="e.g., Hyderabad" required>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="e.g., Hyderabad"
+                        required>
                     <div id="searchList" class="search-list"></div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Get Weather</button>
@@ -110,6 +129,8 @@
         <p>Created by <a href="https://github.com/danishsyed-dev" target="_blank">SYED DANISH ALI</a></p>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>

@@ -1,22 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const weatherForm = document.getElementById('weatherForm');
     const cityInput = document.getElementById('city');
     const searchList = document.getElementById('searchList');
     const weatherInfo = document.getElementById('weatherInfo');
 
-    weatherForm.addEventListener('submit', function(e) {
+    weatherForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const city = cityInput.value;
         getWeather(city);
     });
-/*
-    cityInput.addEventListener('input', function() {
-        fetchSearchList(this.value);
-    });
-*/
+    /*
+        cityInput.addEventListener('input', function() {
+            fetchSearchList(this.value);
+        });
+    */
     function getWeather(city) {
-        const apiKey = 'eb36c7ecb36249e7f47bda47a51defa2'; // Your OpenWeatherMap API key
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+        // Check if config is loaded
+        if (typeof CONFIG === 'undefined' || !CONFIG.OPENWEATHER_API_KEY || CONFIG.OPENWEATHER_API_KEY === 'YOUR_API_KEY_HERE') {
+            weatherInfo.innerHTML = `<div class='alert alert-warning'>Please set up your API key in js/config.js</div>`;
+            return;
+        }
+
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${CONFIG.OPENWEATHER_API_KEY}`;
 
         fetch(apiUrl)
             .then(response => response.json())
@@ -53,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $.ajax({
             url: `https://api.teleport.org/api/cities/?search=${query}`,
             method: "GET",
-            success: function(data) {
+            success: function (data) {
                 let list = "";
                 if (data._embedded && data._embedded["city:search-results"]) {
                     data._embedded["city:search-results"]

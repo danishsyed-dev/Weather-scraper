@@ -1,2 +1,15 @@
-# Ignore the api folder
+# API folder with sensitive files
 api/
+
+# Configuration files with secrets
+config.php
+js/config.js
+*.env
+.env*
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
