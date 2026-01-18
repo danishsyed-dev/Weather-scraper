@@ -129,7 +129,19 @@
         <p>Created by <a href="https://github.com/danishsyed-dev" target="_blank">SYED DANISH ALI</a></p>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/config.js"></script>
+    <!-- Try to load local config first (for development), fallback to config.js -->
+    <script>
+        // Flag to track if local config loaded
+        window.configLoaded = false;
+    </script>
+    <script src="js/config.local.js" onerror="window.configLoaded = false;"
+        onload="window.configLoaded = true;"></script>
+    <script>
+        // If local config didn't load, we'll use the main config.js
+        if (!window.configLoaded) {
+            document.write('<script src="js/config.js"><\/script>');
+        }
+    </script>
     <script src="js/script.js"></script>
 </body>
 

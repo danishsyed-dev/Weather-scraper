@@ -1,14 +1,16 @@
 /**
  * Weather App Configuration
  * 
- * SETUP INSTRUCTIONS:
- * 1. Copy this file and rename it to 'config.js'
- * 2. Replace 'YOUR_API_KEY_HERE' with your OpenWeatherMap API key
- * 3. Get your free API key at: https://openweathermap.org/api
+ * This file uses a placeholder that gets replaced during GitHub Actions deployment.
+ * The actual API key is stored securely in GitHub Secrets.
  * 
- * NOTE: config.js is gitignored - your API key won't be pushed to GitHub
+ * For local development:
+ * - Create a file called 'config.local.js' with your actual API key
+ * - The app will try to use CONFIG from that file first
+ * 
+ * Get your free API key at: https://openweathermap.org/api
  */
 
 const CONFIG = {
-    OPENWEATHER_API_KEY: 'b88ad8cd9677034b07bea463e048650e'
+    OPENWEATHER_API_KEY: '__OPENWEATHER_API_KEY_PLACEHOLDER__'
 };

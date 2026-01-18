@@ -1,9 +1,11 @@
 # API folder with sensitive files
 api/
 
+# Local development config (contains real API key)
+js/config.local.js
+
 # Configuration files with secrets
 config.php
-# js/config.js  # Uncomment after initial push to GitHub Pages
 *.env
 .env*
 

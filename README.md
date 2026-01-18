@@ -13,6 +13,7 @@ A clean, responsive weather application that fetches real-time weather data usin
 - 🌡️ Display temperature, humidity, and pressure
 - 📱 Fully responsive design
 - ⚡ Fast and lightweight
+- 🔒 Secure API key handling via GitHub Secrets
 
 ## Setup Instructions
 
@@ -27,21 +28,40 @@ A clean, responsive weather application that fetches real-time weather data usin
    cd Weather-scraper
    ```
 
-2. **Configure your API key**
-   ```bash
-   cp js/config.example.js js/config.js
-   ```
+2. **Configure your API key for local development**
    
-   Edit `js/config.js` and add your API key:
+   Create a file called `js/config.local.js` with your API key:
    ```javascript
    const CONFIG = {
        OPENWEATHER_API_KEY: 'your_actual_api_key_here'
    };
    ```
+   
+   > **Note:** `config.local.js` is gitignored and won't be pushed to GitHub.
 
 3. **Open in browser**
    
    Simply open `index.html` in your browser, or use Live Server in VS Code.
+
+### Deployment (GitHub Pages)
+
+This project uses **GitHub Actions** to securely deploy with the API key stored in GitHub Secrets.
+
+1. **Add your API key to GitHub Secrets**
+   - Go to your repository on GitHub
+   - Navigate to **Settings** → **Secrets and variables** → **Actions**
+   - Click **New repository secret**
+   - Name: `OPENWEATHER_API_KEY`
+   - Value: Your OpenWeatherMap API key
+   - Click **Add secret**
+
+2. **Enable GitHub Pages**
+   - Go to **Settings** → **Pages**
+   - Under **Source**, select **GitHub Actions**
+
+3. **Push to deploy**
+   - Every push to `main` will trigger the deployment workflow
+   - The workflow automatically injects your API key from GitHub Secrets
 
 ## Project Structure
 
@@ -52,14 +72,20 @@ Weather-scraper/
 │   └── style.css           # Stylesheet
 ├── js/
 │   ├── script.js           # Frontend logic
-│   ├── config.example.js   # Config template
-│   └── config.js           # Your API key (gitignored)
+│   ├── config.js           # Placeholder config (for deployment)
+│   ├── config.local.js     # Your local API key (gitignored)
+│   └── config.example.js   # Config template reference
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # GitHub Actions deployment workflow
 └── README.md
 ```
 
-## Security Note
+## Security
 
-The `config.js` file containing your API key is gitignored and won't be pushed to GitHub. Anyone cloning this repo will need to create their own `config.js` with their own API key.
+- **Local development:** Uses `config.local.js` which is gitignored
+- **Production:** API key is stored in GitHub Secrets and injected during deployment
+- **Source code:** Only contains a placeholder, never the real API key
 
 ## Author
 
